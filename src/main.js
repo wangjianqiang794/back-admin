@@ -4,7 +4,24 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 
-import { Button, Select,Container,Aside,Header,Main,Menu,MenuItem,MenuItemGroup,Submenu,Icon } from 'element-ui';
+import {
+  Button,
+  Select,
+  Container,
+  Aside,
+  Header,
+  Main,
+  Menu,
+  MenuItem,
+  MenuItemGroup,
+  Submenu,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  Row,
+  Col,
+  Card
+} from 'element-ui';
 
 Vue.config.productionTip = false
 
@@ -18,7 +35,12 @@ Vue.use(Menu)
 Vue.use(MenuItem)
 Vue.use(MenuItemGroup)
 Vue.use(Submenu)
-Vue.use(Icon)
+Vue.use(Dropdown)
+Vue.use(DropdownItem)
+Vue.use(DropdownMenu)
+Vue.use(Row)
+Vue.use(Col)
+Vue.use(Card)
 
 
 new Vue({

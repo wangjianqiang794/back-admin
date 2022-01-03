@@ -2,15 +2,18 @@
   <div>
     <el-menu
       class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
       :collapse="isCollapse"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
     >
-      <h3>后台管理系统</h3>
+      <h3 v-show="!isCollapse">后 台 管 理 系 统</h3>
+      <h3 v-show="isCollapse">后 台</h3>
       <el-menu-item
         :index="item.path"
         v-for="item in noChildren"
         :key="item.path"
+        @click="clickMenu(item)"
       >
         <i :class="'el-icon-' + item.icon"></i>
         <span slot="title">{{ item.label }}</span>
@@ -30,6 +33,7 @@
             :index="subItem.path"
             v-for="(subItem, subIndex) in item.children"
             :key="subIndex"
+            @click="clickMenu(item)"
           >
             <i :class="'el-icon-' + subItem.icon"></i>
             <span slot="title">{{ subItem.label }}</span>
@@ -44,32 +48,32 @@
 export default {
   data() {
     return {
-      isCollapse: false,
+      // isCollapse: false, //控制左边栏收缩
       menu: [
         {
           path: "/",
           name: "home",
           label: "首页",
-          icon: "s-home",
+          icon: "s-shop",
           url: "Home/Home",
         },
         {
           path: "/mall",
           name: "mall",
           label: "商品管理",
-          icon: "video-play",
+          icon: "s-goods",
           url: "MallManage/MallManage",
         },
         {
           path: "/user",
           name: "user",
           label: "用户管理",
-          icon: "user",
+          icon: "user-solid",
           url: "UserManage/UserManage",
         },
         {
           label: "其它",
-          icon: "location",
+          icon: "s-open",
           children: [
             {
               path: "/page1",
@@ -91,14 +95,20 @@ export default {
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    // handleOpen(key, keyPath) {
+    //   console.log(key, keyPath);
+    // },
+    // handleClose(key, keyPath) {
+    //   console.log(key, keyPath);
+    // },
+    clickMenu(item) {
+      this.$router.push({ name: item.name });
     },
   },
   computed: {
+    isCollapse() {
+      return this.$store.state.tab.isCollapse;
+    },
     noChildren() {
       return this.menu.filter((item) => !item.children);
     },
@@ -109,9 +119,19 @@ export default {
 };
 </script>
 
-<style>
+<style scoped lang="scss">
+h3 {
+  text-align: center;
+  color: white;
+}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
   width: 200px;
+  border: none;
+  height: 100%;
   min-height: 400px;
+}
+.el-menu--collapse {
+  height: 100%;
+  border: 0;
 }
 </style>
