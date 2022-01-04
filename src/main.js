@@ -20,7 +20,9 @@ import {
   DropdownMenu,
   Row,
   Col,
-  Card
+  Card,
+  Table,
+  TableColumn
 } from 'element-ui';
 
 Vue.config.productionTip = false
@@ -41,6 +43,8 @@ Vue.use(DropdownMenu)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Card)
+Vue.use(Table)
+Vue.use(TableColumn)
 
 
 new Vue({
